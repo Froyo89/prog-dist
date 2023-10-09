@@ -1,0 +1,14 @@
+eclipse.preferences.version=1
+org.springframework.ide.eclipse.boot.wizard.PopularityTracker.web=4
+org.springframework.ide.eclipse.boot.wizard.PreferredSelections.artifactId=AutoService
+org.springframework.ide.eclipse.boot.wizard.PreferredSelections.bootVersion=3.1.4
+org.springframework.ide.eclipse.boot.wizard.PreferredSelections.description=Contiene la funcionalidad de gestion de un taller de autos.
+org.springframework.ide.eclipse.boot.wizard.PreferredSelections.groupId=com.itq
+org.springframework.ide.eclipse.boot.wizard.PreferredSelections.javaVersion=11
+org.springframework.ide.eclipse.boot.wizard.PreferredSelections.language=java
+org.springframework.ide.eclipse.boot.wizard.PreferredSelections.name=AutoService
+org.springframework.ide.eclipse.boot.wizard.PreferredSelections.packageName=com.itq.autoService
+org.springframework.ide.eclipse.boot.wizard.PreferredSelections.packaging=jar
+org.springframework.ide.eclipse.boot.wizard.PreferredSelections.type=MAVEN
+org.springframework.ide.eclipse.boot.wizard.PreferredSelections.version=1.0
+org.springframework.ide.eclipse.boot.wizard.initializr.url=https\://start.spring.io\n

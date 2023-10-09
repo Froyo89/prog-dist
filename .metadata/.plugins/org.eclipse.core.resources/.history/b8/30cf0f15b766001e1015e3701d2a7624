@@ -1,0 +1,117 @@
+package com.itq.autoService.business;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.stereotype.Component;
+
+import com.itq.autoService.dto.Ack;
+import com.itq.autoService.dto.AsociarDesasociarVehiculoRequest;
+import com.itq.autoService.dto.Auto;
+import com.itq.autoService.dto.Conductor;
+import com.itq.autoService.dto.ConsultarConductoresRequest;
+import com.itq.autoService.dto.ConsultarVehiculosAsociadosRequest;
+import com.itq.autoService.dto.EliminarConductorRequest;
+
+@Component
+public class AutoService {
+    private List<Auto> autos = new ArrayList<>();
+    private List<Conductor> conductores = new ArrayList<>();
+
+    /*public Ack insertCar(Auto auto) {
+        Ack ack = new Ack();
+        System.out.println("Color recibido: '" + auto.getColor() + "'");
+
+        if (auto.getColor().equals("rojo")) {
+            ack.setDescription("Bonito color");
+        } else if (auto.getColor().equals("")) {
+            ack.setDescription("¿Invisible?");
+        } else {
+            ack.setDescription("Bueno, por lo menos tiene color.");
+        }
+
+        ack.setCode(0);
+
+        return ack;
+    }*/
+
+    public Ack createDriver(Conductor conductor) {
+        Ack ack = new Ack();
+
+        if (conductor.getNombre() == null || conductor.getTipoLicencia() == null) {
+            ack.setCode(1);
+            ack.setDescription("La información del conductor está incompleta.");
+            return ack;
+        }
+
+        // Agregamos el conductor a la lista de conductores
+        conductores.add(conductor);
+        ack.setCode(0);
+        ack.setDescription("Conductor creado exitosamente");
+
+        return ack;
+    }
+
+    public Ack consultarVehiculosAsociados(ConsultarVehiculosAsociadosRequest request) {
+    	
+        Ack response = new Ack();
+
+        return response;
+    }
+    public Ack consultarConductores(ConsultarConductoresRequest request) {
+        Ack response = new Ack();
+        
+        
+        return response;
+    }
+    public Ack eliminarConductor(EliminarConductorRequest request) {
+        Ack response = new Ack();
+
+        
+        return response;
+    }
+    public Ack asociarDesasociarVehiculo(AsociarDesasociarVehiculoRequest request) {
+        Ack response = new Ack();
+        
+        return response;
+    }
+    public Ack insertCar(Auto auto) {
+        Ack ack = new Ack();
+
+        // Verifica si ya existe un vehículo con el mismo ID y cliente
+        if (autoExiste(auto.getIdAuto(), auto.getIdClient())) {
+            ack.setCode(1);
+            ack.setDescription("Ya existe un vehículo con el mismo ID y cliente.");
+        } else {
+            // Crea un nuevo vehículo con los datos proporcionados
+            Auto nuevoAuto = new Auto();
+            nuevoAuto.setModelo(auto.getModelo());
+            nuevoAuto.setColor(auto.getColor());
+            nuevoAuto.setMarca(auto.getMarca());
+            nuevoAuto.setIdAuto(auto.getIdAuto());
+            nuevoAuto.setIdClient(auto.getIdClient());
+
+            // Agrega el vehículo a la lista de vehículos
+            autos.add(nuevoAuto);
+
+            ack.setCode(0);
+            ack.setDescription("Vehículo creado exitosamente");
+        }
+
+        return ack;
+    }
+
+    public List<Auto> getAutos() {
+        return autos;
+    }
+
+    public List<Conductor> getConductores() {
+        return conductores;
+    }
+
+    private boolean autoExiste(String idAuto, String idClient) {
+        // Verifica si ya existe un vehículo con el mismo ID y cliente en la lista
+        return autos.stream()
+                .anyMatch(auto -> auto.getIdAuto().equals(idAuto) && auto.getIdClient().equals(idClient));
+    }
+}
